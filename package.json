@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node server/index.js",
     "live-reload": "nodemon server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "set LOG_DISABLED=true NODE_OPTIONS=--experimental-vm-modules&&jest --no-cache",
+    "test:watch": "set LOG_DISABLED=true && set NODE_OPTIONS=--experimental-vm-modules && jest --no-cache --watchAll",
+    "test:coverage": "set NODE_OPTIONS=--experimental-vm-modules&&jest --no-cache --coverage"
   },
   "engines": {
     "node": "17"
@@ -24,6 +26,7 @@
   },
   "homepage": "https://github.com/ErickWendel/semanajsexpert-spotify-template#readme",
   "devDependencies": {
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
