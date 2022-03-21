@@ -12,10 +12,10 @@ export class Controller {
 
   async handleCommand({ command }) {
     logger.info(`command received: ${command}`);
-    const cmd = command.toLowerCase();
     const result = {
       result: "ok",
     };
+    const cmd = command.toLowerCase();
     if (cmd.includes("start")) {
       this.service.startStreaming();
       return result;
@@ -24,6 +24,10 @@ export class Controller {
       this.service.stopStreaming();
       return result;
     }
+    const chosenFx = await this.service.readFxByName(cmd);
+    logger.info(`add fx to service: ${chosenFx}`);
+    this.service.appendFxStream(chosenFx);
+    return result;
   }
 
   createClientStream() {
